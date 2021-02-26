@@ -17,7 +17,7 @@ public class Client1Test {
 
     {
         try {
-          Socket  clientSocket = new Socket("127.0.0.1", 8080);
+          Socket clientSocket = new Socket("127.0.0.1", 8080);
     // STEP3: Setup input and output streams
     PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
 

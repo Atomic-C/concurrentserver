@@ -8,29 +8,38 @@ import java.net.Socket;
 import java.net.ServerSocket;
 
 public class Server {
-    public static void main(String[] args) {
 
-        //int portNumber = 8080;
-        // Need a server to listen to a client
-        try { // TODO: FOLLOW MODULE-2 NETWORK - Sockets
-            // java.net.ServerSocket implements TCP server sockets, used to wait for requests to come in over the network.
-             ServerSocket serverSocket = new ServerSocket(8080); // TCP SERVER SOCKET
+    public static void main(String[] args) throws IOException {
 
-             // java.net.Socket implements TCP client sockets, capable of connecting to a specified server and port
-             Socket clientSocket = serverSocket.accept(); // Blocking method will wait - TCP CLIENT SOCKET
+        Server server = new Server();
+        server.startServer();
 
-             PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
-             out.println("Welcome to the server.");
 
-             out.close(); // Should everything be closed?
-             in.close();
-             serverSocket.close();
-             clientSocket.close();
 
-        } catch (IOException e) {
-            e.printStackTrace();
+
+    }
+
+    public void startServer() throws IOException {
+
+        int connectionCount = 0;
+        ServerSocket serverSocket = new ServerSocket(8080); // TCP SERVER SOCKET
+
+             // TODO: IMPLEMENT A WHILE LOOP WITH DECRECREMENTOR
+        while (true) {
+
+            Socket clientSocket = serverSocket.accept(); // Blocking method will wait - TCP CLIENT SOCKET
+
+            connectionCount++;
+
+            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+            out.println("Welcome, you are player # " + connectionCount);
+            //out.println("Welcome, you are player # " + connectionCount); // this only shows on nc
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+
         }
     }
+
+
 }
