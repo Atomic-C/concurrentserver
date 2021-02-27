@@ -3,8 +3,16 @@ package org.academiadecodigo.cachealots.dynamicserver;
 import java.io.*;
 import java.net.Socket;
 import java.net.ServerSocket;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Server {
+
+    ExecutorService pool;
+
+    public Server(){
+        pool = Executors.newFixedThreadPool(4);
+    }
 
     public static void main(String[] args) throws IOException {
 
@@ -40,9 +48,9 @@ public class Server {
             // Here we create a new task
             MyTasker myTask = new MyTasker(clientSocket); // We pass in it's clientSocket
 
-            Thread thread = new Thread(myTask);
-            thread.start();
-
+            //Thread thread = new Thread(myTask);
+            //thread.start();
+            pool.submit(myTask);
         }
     }
 
