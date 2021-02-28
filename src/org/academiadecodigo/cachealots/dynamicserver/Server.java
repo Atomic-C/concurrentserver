@@ -1,8 +1,10 @@
 package org.academiadecodigo.cachealots.dynamicserver;
 
 import java.io.*;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.net.ServerSocket;
+import java.net.UnknownHostException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -66,7 +68,7 @@ public class Server {
 
             // access directly Thread class and print it's name
             System.out.println("This " + Thread.currentThread().getName() + " has started.");
-            out.println("Welcome, you are player #" + connectionCount + " today.");
+            out.println("Welcome, you are player #" + connectionCount + " today.\n Chose RPS or ERICA to chose a game");
 
             while (!clientSocket.isClosed()) { // While client socket isn't closed
 
@@ -82,6 +84,9 @@ public class Server {
                         RPS rps = new RPS(clientSocket.getInputStream(), clientSocket.getOutputStream());
                         rps.startRPS();
                     }
+                    else if (line.equals("ERICA")) {
+                        out.println("Coming soon.\nPlease chose another game.");
+                    }
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -92,5 +97,7 @@ public class Server {
 
         }
     }
+
+
 
 }

@@ -43,6 +43,8 @@ public class RPS {
         // this method will block the thread execution while waiting for user input
         String name = prompt.getUserInput(question1);
 
+        //TODO: IMPLEMENT TINY MENU WITH OPTIONS --> DONE ON Server ->> MyTasker class
+
 
         // notice how the return type is defined by the scanner/question
         // create one more question
@@ -67,7 +69,7 @@ public class RPS {
             gameHandTranslated = "scissors";
         }
 
-        if (handType.equals("rock")) { //TODO: ASSIGN MATH RANDOM BETWEEN 0 TO 2 TO STRINGS ROCK PAPER SCISSORS
+        if (handType.equals("rock")) { //TODO: ASSIGN MATH RANDOM BETWEEN 0 TO 2 TO STRINGS ROCK PAPER SCISSORS --- > DONE
 
             //int gameHand = (int) Math.floor(Math.random() * 3); // between 0 and 2
             printStream.println("Computer choose " + gameHandTranslated);
@@ -99,8 +101,11 @@ public class RPS {
         else if(handType.equals("scissors") && gameHandTranslated.equals("rock")) {
             printStream.println("Computer wins.");
         }
-        else {
+        else if (handType.equals(gameHandTranslated)) {
             printStream.println("It's a tie!!!");
+        }
+        else {
+            printStream.println("Stop being creative this took me a shit ton fo work.\n Now, chose rock, paper or scissors.");
         }
     }
 
