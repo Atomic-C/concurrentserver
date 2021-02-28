@@ -90,6 +90,10 @@ public class Server {
                     System.out.println(Thread.currentThread().getName() + " quit, closing socket.");
                 }
 
+                else if (line.equals("RPS")) {
+                    out.println("Welcome to Rock Paper Scissors!");
+                }
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
