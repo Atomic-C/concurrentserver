@@ -135,7 +135,7 @@ private  String line;
                         int answerIndex = prompt.getUserInput(scanner);
 
                         System.out.println("User wants to " + options[answerIndex - 1]);
-                        
+
 
 
 
