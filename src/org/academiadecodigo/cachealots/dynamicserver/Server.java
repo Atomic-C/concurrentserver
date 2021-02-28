@@ -33,7 +33,7 @@ public class Server {
             connectionCount++; // Count established connections since server started
             System.out.println("Player #" + connectionCount + " has joined at socket: " + clientSocket);
 
-            // TODO: IMPLEMENT MULTI THREAD
+            // TODO: IMPLEMENT MULTI THREAD ----> DONE
             // Here we create a new task
             MyTasker myTask = new MyTasker(clientSocket); // We pass in it's clientSocket
 

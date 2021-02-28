@@ -18,9 +18,14 @@ public class RPS {
     private OutputStream out;
     private PrintStream printStream;
     private int gameHand;
+    private int paper = 0;
+    private int rock = 1;
+    private int scissors = 2;
+    private String gameHandTranslated;
 
 
-    public RPS(InputStream in, OutputStream out) { // TODO: CONNECT Output and Input streams to prompt, so we can use netcat
+
+    public RPS(InputStream in, OutputStream out) { // TODO: CONNECT Output and Input streams to prompt, so we can use netcat ---> DONE
         this.in = in;
         this.out = out;
     }
@@ -52,18 +57,50 @@ public class RPS {
 
        gameHand = (int) Math.floor(Math.random() * 3); // between 0 and 2
 
-        if (handType.equals("paper")) { //TODO: ASSIGN MATH RANDOM BETWEEN 0 TO 2 TO STRINGS ROCK PAPER SCISSORS
+        if (gameHand == 0) {
+            gameHandTranslated = "rock";
+        }
+        else if(gameHand == 1) {
+            gameHandTranslated = "paper";
+        }
+        else if(gameHand == 2){
+            gameHandTranslated = "scissors";
+        }
+
+        if (handType.equals("rock")) { //TODO: ASSIGN MATH RANDOM BETWEEN 0 TO 2 TO STRINGS ROCK PAPER SCISSORS
 
             //int gameHand = (int) Math.floor(Math.random() * 3); // between 0 and 2
-            printStream.println(gameHand);
+            printStream.println("Computer choose " + gameHandTranslated);
         }
-        else if (handType.equals("rock")) {
+        else if (handType.equals("paper")) {
             //int gameHand = (int) Math.floor(Math.random() * 3);
-            printStream.println(gameHand);
+            printStream.println("Computer choose " + gameHandTranslated);
         }
         else if (handType.equals("scissors")) {
             //int gameHand = (int) Math.floor(Math.random() * 3);
-            printStream.println(gameHand);
+            printStream.println("Computer choose " + gameHandTranslated);
+        }
+
+        if (handType.equals("paper") && gameHandTranslated.equals("rock")) {
+            printStream.println("You win.");
+        }
+        else if(handType.equals("paper") && gameHandTranslated.equals("scissors")) {
+            printStream.println("Computer wins.");
+        }
+        else if(handType.equals("rock") && gameHandTranslated.equals("scissors")) {
+            printStream.println("You win.");
+        }
+        else if(handType.equals("rock") && gameHandTranslated.equals("paper")) {
+            printStream.println("Computer wins.");
+        }
+        else if(handType.equals("scissors") && gameHandTranslated.equals("paper")) {
+            printStream.println("You win.");
+        }
+        else if(handType.equals("scissors") && gameHandTranslated.equals("rock")) {
+            printStream.println("Computer wins.");
+        }
+        else {
+            printStream.println("It's a tie!!!");
         }
     }
 
