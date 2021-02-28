@@ -14,7 +14,7 @@ public class Server {
     private int connectionCount = 0;
 
     public Server() {
-        pool = Executors.newFixedThreadPool(2);
+        pool = Executors.newFixedThreadPool(21);
     }
 
     public static void main(String[] args) throws IOException {
@@ -81,7 +81,7 @@ public class Server {
                         System.out.println(Thread.currentThread().getName() + " quit, closing socket.");
                     } else if (line.equals("RPS")) {
                         out.println("Welcome to Rock Paper Scissors!");
-                        RPS rps = new RPS(clientSocket.getInputStream(), clientSocket.getOutputStream());
+                        RPS rps = new RPS(clientSocket.getInputStream(), clientSocket.getOutputStream(), clientSocket);
                         rps.startRPS();
                     }
                     else if (line.equals("ERICA")) {
