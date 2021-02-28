@@ -4,6 +4,13 @@ import org.academiadecodigo.bootcamp.Prompt;
 import org.academiadecodigo.bootcamp.scanners.string.StringInputScanner;
 
 public class RPS {
+    // Class properties
+    //private Server server;
+    private Server.MyTasker myTasker;
+
+    public RPS() { // TODO: CONNECT Output and Input streams to prompt, so we can use netcat
+
+    }
 
     public void something() {
         // attach prompt to system's input/output
