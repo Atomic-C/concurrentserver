@@ -79,6 +79,8 @@ public class Server {
                         System.out.println(Thread.currentThread().getName() + " quit, closing socket.");
                     } else if (line.equals("RPS")) {
                         out.println("Welcome to Rock Paper Scissors!");
+                        RPS rps = new RPS(clientSocket.getInputStream(), clientSocket.getOutputStream());
+                        rps.startRPS();
                     }
 
                 } catch (IOException e) {
