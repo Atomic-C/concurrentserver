@@ -1,8 +1,10 @@
 package org.academiadecodigo.cachealots.dynamicserver;
 
 import java.io.*;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.net.ServerSocket;
+import java.net.UnknownHostException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -12,7 +14,7 @@ public class Server {
     private int connectionCount = 0;
 
     public Server() {
-        pool = Executors.newFixedThreadPool(2);
+        pool = Executors.newFixedThreadPool(21);
     }
 
     public static void main(String[] args) throws IOException {
@@ -33,7 +35,7 @@ public class Server {
             connectionCount++; // Count established connections since server started
             System.out.println("Player #" + connectionCount + " has joined at socket: " + clientSocket);
 
-            // TODO: IMPLEMENT MULTI THREAD
+            // TODO: IMPLEMENT MULTI THREAD ----> DONE
             // Here we create a new task
             MyTasker myTask = new MyTasker(clientSocket); // We pass in it's clientSocket
 
@@ -66,7 +68,7 @@ public class Server {
 
             // access directly Thread class and print it's name
             System.out.println("This " + Thread.currentThread().getName() + " has started.");
-            out.println("Welcome, you are player #" + connectionCount + " today.");
+            out.println("Welcome, you are player #" + connectionCount + " today.\n Chose RPS or ERICA to chose a game");
 
             while (!clientSocket.isClosed()) { // While client socket isn't closed
 
@@ -79,6 +81,11 @@ public class Server {
                         System.out.println(Thread.currentThread().getName() + " quit, closing socket.");
                     } else if (line.equals("RPS")) {
                         out.println("Welcome to Rock Paper Scissors!");
+                        RPS rps = new RPS(clientSocket.getInputStream(), clientSocket.getOutputStream(), clientSocket);
+                        rps.startRPS();
+                    }
+                    else if (line.equals("ERICA")) {
+                        out.println("Coming soon.\nPlease chose another game.");
                     }
 
                 } catch (IOException e) {
@@ -90,5 +97,7 @@ public class Server {
 
         }
     }
+
+
 
 }
